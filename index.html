@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNB Lab | Clinical Neuroimaging and Biomarkers Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-alt: #f9f9f9;
+            --color-bg-card: #f3f3f3;
+            --color-primary: #333333;
+            --color-accent: #2a9d8f;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #444444;
+            --color-text-muted: #777777;
+            --color-border: #e0e0e0;
+            --font-main: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--color-bg);
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Hero with Mission */
+        .hero {
+            padding: 120px 2rem 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .mission-text {
+            text-align: left;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .mission-text p {
+            margin-bottom: 1.25rem;
+        }
+
+        .mission-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #444;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--color-text);
+            margin: 0 auto 2.5rem;
+        }
+
+        /* PI Section */
+        .pi {
+            background: var(--color-bg-alt);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pi-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .pi-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .pi-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .pi-title {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pi-bio {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Team Map */
+        .team {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.lab { background: var(--color-accent); }
+        .legend-dot.member { background: var(--color-text); }
+
+        .member-marker {
+            background: var(--color-text);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .lab-marker {
+            background: var(--color-accent);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(42, 157, 143, 0.4);
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .team-card {
+            background: var(--color-bg-alt);
+            padding: 1.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--color-border);
+        }
+
+        .team-card:hover {
+            border-color: var(--color-text);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .team-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .team-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .team-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .team-origin {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .team-hint {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* News */
+        .news {
+            background: var(--color-bg-alt);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            background: var(--color-bg);
+            padding: 1.25rem 1.5rem;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            border: 1px solid var(--color-border);
+        }
+
+        .news-date {
+            color: var(--color-text);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .news-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .news-content p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--color-bg-card);
+            color: var(--color-text-muted);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border-radius: 2px;
+        }
+
+        /* Links */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-card {
+            background: var(--color-bg-alt);
+            padding: 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s;
+            border: 1px solid var(--color-border);
+        }
+
+        .link-card:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+
+        .link-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--color-bg-card);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .link-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--color-text-secondary);
+        }
+
+        .link-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .link-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Support */
+        .support {
+            background: var(--color-text);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .support h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .support p {
+            color: white;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .btn-white:hover {
+            background: #f0f0f0;
+            color: var(--color-text);
+        }
+
+        .support-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: white;
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-alt);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-bg);
+            max-width: 450px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--color-bg-alt);
+            border: none;
+            color: var(--color-text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .modal-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .modal h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-origin {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-bio {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .pi-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pi-photo {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .news-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">CNB Lab</a>
+            <ul class="nav-links">
+                <li><a href="#pi">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero with Mission -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Clinical Neuroimaging & Biomarkers Lab</h1>
+            <p class="hero-subtitle">University of Queensland</p>
+            
+            <div class="mission-text">
+                <p>
+                    Our mission is to pioneer new approaches for understanding how trauma shapes the brain and body, and to translate these insights into more effective and accessible interventions. We integrate advanced neuroimaging, large-scale biobanking, and computational modelling with lived-experience co-design to identify mechanisms of vulnerability and resilience, discover biomarkers, and inform precision therapeutics.
+                </p>
+                <p>
+                    By bridging basic and translational neuroscience with next-generation technologies, including AI-enabled analysis, data-sharing initiatives, and open science, we aim to transform how trauma-related mental illnesses are understood, diagnosed, and treated.
+                </p>
+                <p>
+                    We develop and evaluate innovative therapeutics, including psychedelic-assisted psychotherapy and precision rehabilitation approaches, in partnership with clinicians, industry, and lived-experience communities. Our research also extends to related and comorbid mental illnesses such as depression, and leverages models of brain injury (e.g., stroke and traumatic brain injury) to investigate how biological trauma contributes to psychopathology and recovery.
+                </p>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#team" class="btn btn-primary">Our Team</a>
+                <a href="#resources" class="btn btn-secondary">Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principal Investigator -->
+    <section class="pi" id="pi">
+        <div class="section-container">
+            <h2 class="section-title">Principal Investigator</h2>
+            <div class="section-divider"></div>
+            <div class="pi-grid">
+                <img src="headshot.jpg" alt="Dr. Lena Oestreich" class="pi-photo">
+                <div class="pi-info">
+                    <h3>Dr. Lena Oestreich</h3>
+                    <p class="pi-title">Group Leader · AIBN & School of Psychology · University of Queensland</p>
+                    <p class="pi-bio">
+                        I am a biological psychologist and computational neuroscientist with a PhD in clinical psychology from the University of New South Wales, and postdoctoral training in clinical trials and computational psychiatry at the University of Queensland. My research focuses on how trauma shapes the brain and body across the lifespan, and how these insights can be translated into more effective and accessible treatments for trauma-related mental illnesses.
+                        <br><br>
+                        I currently hold a joint appointment as Group Leader at the Australian Institute for Bioengineering and Nanotechnology and the School of Psychology at the University of Queensland, where I lead the Clinical Neuroimaging and Biomarkers Lab. I am committed to open science, equitable participation in research, and advancing interdisciplinary approaches that bridge neuroscience, clinical practice, and technological innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="team">
+        <div class="section-container">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">A global perspective on neuroscience research</p>
+            <div class="section-divider"></div>
+            
+            <div id="map"></div>
+            <div class="map-legend">
+                <div class="legend-item">
+                    <div class="legend-dot lab"></div>
+                    <span>Lab Location (Brisbane)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot member"></div>
+                    <span>Team Member Origins</span>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card" data-member="sarah">
+                    <div class="team-card-header">
+                        <div class="team-avatar">SK</div>
+                        <div>
+                            <h4>Sarah Khalife</h4>
+                            <p class="team-origin">🇱🇧 Lebanon</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="xuqian">
+                    <div class="team-card-header">
+                        <div class="team-avatar">XL</div>
+                        <div>
+                            <h4>Xuqian Li</h4>
+                            <p class="team-origin">🇨🇳 China</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="chrystal">
+                    <div class="team-card-header">
+                        <div class="team-avatar">CD</div>
+                        <div>
+                            <h4>Chrystal Douflias</h4>
+                            <p class="team-origin">🇬🇷 Greece</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="hamad">
+                    <div class="team-card-header">
+                        <div class="team-avatar">HM</div>
+                        <div>
+                            <h4>Hamad Mhanna</h4>
+                            <p class="team-origin">🇯🇴 Jordan</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="mamaru">
+                    <div class="team-card-header">
+                        <div class="team-avatar">MA</div>
+                        <div>
+                            <h4>Mamaru Amsalu</h4>
+                            <p class="team-origin">🇪🇹 Ethiopia</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="aveechal">
+                    <div class="team-card-header">
+                        <div class="team-avatar">AP</div>
+                        <div>
+                            <h4>Aveechal Prasad</h4>
+                            <p class="team-origin">🇦🇺 Australia</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+                
+                <div class="team-card" data-member="matthew">
+                    <div class="team-card-header">
+                        <div class="team-avatar">MT</div>
+                        <div>
+                            <h4>Matthew Thurston</h4>
+                            <p class="team-origin">🇺🇸 United States</p>
+                        </div>
+                    </div>
+                    <p class="team-hint">Click for more info →</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section class="news" id="news">
+        <div class="section-container">
+            <h2 class="section-title">Latest News</h2>
+            <p class="section-subtitle">Updates from the lab</p>
+            <div class="section-divider"></div>
+            
+            <div class="news-grid">
+                <article class="news-item">
+                    <div class="news-date">Jan 2026</div>
+                    <div class="news-content">
+                        <h4>Lab Website Launch</h4>
+                        <p>We're excited to launch our new lab website. Stay tuned for updates on our research, publications, and team news.</p>
+                        <span class="news-tag">Announcement</span>
+                    </div>
+                </article>
+                <article class="news-item">
+                    <div class="news-date">Dec 2025</div>
+                    <div class="news-content">
+                        <h4>Example: New Publication</h4>
+                        <p>Placeholder for future news. Edit this section to add real lab updates.</p>
+                        <span class="news-tag">Publication</span>
+                    </div>
+                </article>
+                <article class="news-item">
+                    <div class="news-date">Nov 2025</div>
+                    <div class="news-content">
+                        <h4>Example: Team Member Award</h4>
+                        <p>Placeholder for team achievements and celebrations.</p>
+                        <span class="news-tag">Award</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources">
+        <div class="section-container">
+            <h2 class="section-title">Resources</h2>
+            <p class="section-subtitle">Connect with our work</p>
+            <div class="section-divider"></div>
+            
+            <div class="links-grid">
+                <a href="https://github.com/Clinical-Neuroimaging-Lab" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Lab GitHub</h4>
+                        <p>Open-source code and pipelines</p>
+                    </div>
+                </a>
+                <a href="https://github.com/LenaOestreich13" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Dr. Oestreich's GitHub</h4>
+                        <p>Personal repositories</p>
+                    </div>
+                </a>
+                <a href="#" class="link-card" onclick="alert('Add your Google Scholar URL'); return false;">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Publications</h4>
+                        <p>Google Scholar</p>
+                    </div>
+                </a>
+                <a href="#" class="link-card" onclick="alert('Add your LinkedIn URL'); return false;">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p>Connect and follow</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support -->
+    <section class="support" id="support">
+        <h2>Support Our Research</h2>
+        <p>Your contribution helps advance groundbreaking research into trauma-related mental illness.</p>
+        <a href="https://giving.uq.edu.au/" target="_blank" class="btn btn-white">Donate to UQ Research</a>
+        <p class="support-note">Contact us for information on supporting the lab directly.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Clinical Neuroimaging & Biomarkers Lab</h3>
+                    <p>Australian Institute for Bioengineering and Nanotechnology<br>
+                    School of Psychology · University of Queensland<br>
+                    Brisbane, Australia</p>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:your.email@uq.edu.au">Contact</a>
+                    <a href="https://github.com/Clinical-Neuroimaging-Lab" target="_blank">GitHub</a>
+                    <a href="https://www.uq.edu.au" target="_blank">UQ Website</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Clinical Neuroimaging and Biomarkers Lab</p>
+                <p>Committed to open science</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="memberModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-avatar" id="modalAvatar">SK</div>
+            <h3 id="modalName">Member Name</h3>
+            <p class="modal-origin" id="modalOrigin">Country</p>
+            <p class="modal-bio" id="modalBio">Bio text...</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const labLocation = { lat: -27.4975, lng: 153.0137 };
+        
+        const teamMembers = [
+            { name: 'Sarah Khalife', initials: 'SK', country: 'Lebanon', flag: '🇱🇧', lat: 33.8547, lng: 35.8623, bio: 'Research focus and bio to be added.' },
+            { name: 'Xuqian Li', initials: 'XL', country: 'China', flag: '🇨🇳', lat: 35.8617, lng: 104.1954, bio: 'Research focus and bio to be added.' },
+            { name: 'Chrystal Douflias', initials: 'CD', country: 'Greece', flag: '🇬🇷', lat: 39.0742, lng: 21.8243, bio: 'Research focus and bio to be added.' },
+            { name: 'Hamad Mhanna', initials: 'HM', country: 'Jordan', flag: '🇯🇴', lat: 30.5852, lng: 36.2384, bio: 'Research focus and bio to be added.' },
+            { name: 'Mamaru Amsalu', initials: 'MA', country: 'Ethiopia', flag: '🇪🇹', lat: 9.1450, lng: 40.4897, bio: 'Research focus and bio to be added.' },
+            { name: 'Aveechal Prasad', initials: 'AP', country: 'Australia', flag: '🇦🇺', lat: -25.2744, lng: 133.7751, bio: 'Research focus and bio to be added.' },
+            { name: 'Matthew Thurston', initials: 'MT', country: 'United States', flag: '🇺🇸', lat: 37.0902, lng: -95.7129, bio: 'Research focus and bio to be added.' }
+        ];
+
+        const map = L.map('map', {
+            center: [20, 50],
+            zoom: 2,
+            minZoom: 2,
+            maxZoom: 6,
+            worldCopyJump: true
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap © CARTO',
+            subdomains: 'abcd'
+        }).addTo(map);
+
+        const labIcon = L.divIcon({ className: 'lab-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
+        const memberIcon = L.divIcon({ className: 'member-marker', iconSize: [12, 12], iconAnchor: [6, 6] });
+
+        L.marker([labLocation.lat, labLocation.lng], { icon: labIcon })
+            .addTo(map)
+            .bindPopup('<strong>CNB Lab</strong><br>University of Queensland');
+
+        teamMembers.forEach(member => {
+            L.marker([member.lat, member.lng], { icon: memberIcon })
+                .addTo(map)
+                .bindPopup(`<strong>${member.name}</strong><br>${member.flag} ${member.country}`);
+            
+            L.polyline([[member.lat, member.lng], [labLocation.lat, labLocation.lng]], {
+                color: '#333333',
+                weight: 1,
+                opacity: 0.3,
+                dashArray: '4, 6'
+            }).addTo(map);
+        });
+
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const memberName = this.querySelector('h4').textContent;
+                const member = teamMembers.find(m => m.name === memberName);
+                if (member) {
+                    document.getElementById('modalAvatar').textContent = member.initials;
+                    document.getElementById('modalName').textContent = member.name;
+                    document.getElementById('modalOrigin').textContent = `${member.flag} ${member.country}`;
+                    document.getElementById('modalBio').textContent = member.bio;
+                    document.getElementById('memberModal').classList.add('active');
+                }
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('memberModal').classList.remove('active');
+        }
+
+        document.getElementById('memberModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
