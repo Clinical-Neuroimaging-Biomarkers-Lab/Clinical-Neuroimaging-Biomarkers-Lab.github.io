@@ -840,7 +840,7 @@
 
                 <div class="team-card" data-member="chrystal">
                     <div class="team-card-header">
-                        <div class="team-avatar">CD</div>
+                        <div class="team-avatar"><img src="team-chrystal-douflias.jpg" alt="Chrystal Douflias"></div>
                         <div>
                             <h4>Chrystal Douflias</h4>
                             <p class="team-origin">🇦🇺 Australia</p>
@@ -1063,8 +1063,9 @@
                 initials: 'CD',
                 country: 'Australia',
                 flag: '🇦🇺',
-                lat: -25.2744,
-                lng: 133.7751,
+                lat: -34.9285,
+                lng: 138.6007,
+                photo: 'team-chrystal-douflias.jpg',
                 bio: 'Research focus and bio to be added.'
             },
             {
@@ -1078,7 +1079,7 @@
                 bio: 'I am a PhD candidate at The University of Queensland, Faculty of Health, Medicine and Behavioural Sciences. My research focuses on MRI-derived Brain Age Gap (BAG) as a transdiagnostic biomarker across neurological and psychiatric disorders, using large-scale datasets (e.g. UK biobank dataset) and advanced statistical modelling. I am particularly interested in methodological reliability, bias correction, and clinical interpretation of BAG. My background is in medical imaging, with experience in neuroimaging pipelines, quantitative modelling, and systematic reviews, and meta-analyses. Outside research, I enjoy turning complex neuroimaging data into clear, clinically meaningful insights and collaborating across disciplines.',
                 orcid: '0000-0001-6629-3297',
                 scholar: 'https://scholar.google.com.au/citations?user=vStZXWEAAAAJ&hl=en',
-                website: 'https://www.researchgate.net/profile/Hamad-Abu-Mhanna'
+                researchgate: 'https://www.researchgate.net/profile/Hamad-Abu-Mhanna'
             },
             {
                 name: 'Mamaru Amsalu',
@@ -1173,10 +1174,10 @@
                             Google Scholar
                         </a>`;
                     }
-                    if (member.website) {
-                        linksHtml += `<a href="${member.website}" target="_blank" class="modal-link">
-                            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1 17.889V19H9v-1.111c-1.334-.248-2.248-.912-2.635-1.889l1.412-.588c.248.684.869 1.088 1.723 1.088.869 0 1.461-.478 1.461-1.201 0-.672-.504-1.043-1.412-1.287l-.748-.207c-1.412-.387-2.248-1.162-2.248-2.314 0-1.172.896-2.064 2.447-2.328V8h2v1.146c1.162.207 1.963.784 2.314 1.684l-1.361.639c-.207-.551-.695-.912-1.439-.912-.744 0-1.287.391-1.287 1.008 0 .568.439.912 1.287 1.119l.748.207c1.52.42 2.373 1.183 2.373 2.449 0 1.287-.957 2.201-2.635 2.449zm6.635-5.889H16v2h1.635v2H16v2h-2v-2h-1.635v-2H14v-2h-1.635v-2H14v-2h2v2h1.635v2z"/></svg>
-                            Website
+                    if (member.researchgate) {
+                        linksHtml += `<a href="${member.researchgate}" target="_blank" class="modal-link">
+                            <svg viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.013.621-.013 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .078.53h-.005a3.334 3.334 0 0 0 .112.438c.244.743.65 1.303 1.214 1.68.565.376 1.256.564 2.075.564.8 0 1.536-.213 2.105-.603.57-.39.94-.916 1.175-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82h-3.842v1.615h2.082a3.269 3.269 0 0 1-.376 1.199c-.263.4-.682.607-1.22.607-.376 0-.706-.1-.98-.3a1.866 1.866 0 0 1-.652-.89 4.494 4.494 0 0 1-.262-1.024 8.184 8.184 0 0 1-.078-1.248c.006-.498.036-.95.092-1.357.057-.408.147-.774.27-1.098.121-.322.306-.574.55-.753.246-.18.552-.27.92-.27.482 0 .855.137 1.127.41.27.273.45.648.535 1.127h1.903c-.07-.842-.375-1.491-.922-1.945-.544-.454-1.296-.681-2.254-.681zM5.592 0c-.808 0-1.498.19-2.063.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 8.365 8.365 0 0 0-.078.53 9 9 0 0 0-.05.727c-.01.282-.014.621-.014 1.016a31.121 31.123 0 0 0 .014 1.017 9 9 0 0 0 .05.727 7.946 7.946 0 0 0 .078.53h-.005a3.334 3.334 0 0 0 .112.438c.244.743.65 1.303 1.214 1.68.565.376 1.255.564 2.075.564.8 0 1.535-.213 2.105-.603.57-.39.94-.916 1.174-1.65.076-.235.135-.558.177-.93a10.9 10.9 0 0 0 .043-1.207v-.82H5.256v1.615h2.082a3.269 3.269 0 0 1-.376 1.199c-.263.4-.682.607-1.22.607-.376 0-.706-.1-.98-.3a1.866 1.866 0 0 1-.652-.89 4.494 4.494 0 0 1-.263-1.024 8.184 8.184 0 0 1-.077-1.248c.006-.498.036-.95.092-1.357a4.258 4.258 0 0 1 .27-1.098c.121-.322.305-.574.55-.753.246-.18.552-.27.92-.27.482 0 .855.137 1.127.41.27.273.449.648.534 1.127h1.903c-.07-.842-.374-1.491-.921-1.945-.545-.454-1.296-.681-2.254-.681z"/></svg>
+                            ResearchGate
                         </a>`;
                     }
                     linksEl.innerHTML = linksHtml;
