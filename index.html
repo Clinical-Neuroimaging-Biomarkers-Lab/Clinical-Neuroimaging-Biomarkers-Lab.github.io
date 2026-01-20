@@ -333,6 +333,10 @@
             z-index: 1;
         }
 
+        .english-labels {
+            filter: grayscale(100%) invert(1) brightness(1.5) invert(1) contrast(0.4);
+            opacity: 0.6;
+        }
 
         /* Team Grid */
         .team-grid {
@@ -1238,10 +1242,10 @@
             subdomains: 'abcd'
         }).addTo(map);
 
-        // Simple gray labels overlay (CARTO)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+        // English labels overlay (ESRI - styled to remove outline)
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
             attribution: '',
-            subdomains: 'abcd'
+            className: 'english-labels'
         }).addTo(map);
 
         const labIcon = L.divIcon({ className: 'lab-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
