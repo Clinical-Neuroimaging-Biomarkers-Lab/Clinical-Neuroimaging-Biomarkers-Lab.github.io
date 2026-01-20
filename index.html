@@ -299,6 +299,16 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
+        .member-photo-marker {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            background: var(--color-text);
+        }
+
         .lab-marker {
             background: var(--color-accent);
             border: 2px solid white;
@@ -808,8 +818,7 @@
                     <span>Lab Location (Brisbane)</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-dot member"></div>
-                    <span>Team Member Origins</span>
+                    <span>Photos show team member origins</span>
                 </div>
             </div>
 
@@ -1150,14 +1159,29 @@
         }).addTo(map);
 
         const labIcon = L.divIcon({ className: 'lab-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
-        const memberIcon = L.divIcon({ className: 'member-marker', iconSize: [12, 12], iconAnchor: [6, 6] });
 
         L.marker([labLocation.lat, labLocation.lng], { icon: labIcon })
             .addTo(map)
             .bindPopup('<strong>CNB Lab</strong><br>University of Queensland');
 
         teamMembers.forEach(member => {
-            L.marker([member.lat, member.lng], { icon: memberIcon })
+            let markerIcon;
+            if (member.photo) {
+                markerIcon = L.divIcon({
+                    className: '',
+                    html: `<img src="${member.photo}" class="member-photo-marker" alt="${member.name}">`,
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18]
+                });
+            } else {
+                markerIcon = L.divIcon({
+                    className: '',
+                    html: `<div class="member-photo-marker" style="display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:12px;">${member.initials}</div>`,
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18]
+                });
+            }
+            L.marker([member.lat, member.lng], { icon: markerIcon })
                 .addTo(map)
                 .bindPopup(`<strong>${member.name}</strong><br>${member.flag} ${member.country}`);
             
