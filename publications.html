@@ -143,13 +143,31 @@
         }
 
         .pub-item {
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
-            border-left: 3px solid var(--color-border);
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
         }
 
         .pub-item:hover {
-            border-left-color: var(--color-accent);
+            border-color: var(--color-accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .pub-thumbnail {
+            width: 120px;
+            height: 160px;
+            flex-shrink: 0;
+            border-radius: 3px;
+            object-fit: cover;
+            border: 1px solid var(--color-border);
+        }
+
+        .pub-content {
+            flex: 1;
         }
 
         .pub-title {
@@ -285,6 +303,16 @@
                 padding: 3rem 1.5rem;
             }
 
+            .pub-item {
+                flex-direction: column;
+            }
+
+            .pub-thumbnail {
+                width: 100%;
+                height: auto;
+                max-width: 200px;
+            }
+
             .footer-content {
                 flex-direction: column;
             }
@@ -320,39 +348,19 @@
 
     <!-- Publications List -->
     <div class="publications">
-        <!-- Example format - replace with your actual publications -->
 
-        <h2 class="pub-year">2025</h2>
-
-        <div class="pub-item">
-            <p class="pub-title"><a href="#">Example Publication Title Goes Here</a></p>
-            <p class="pub-authors">Author A, Author B, <strong>Oestreich LKL</strong>, Author C</p>
-            <p class="pub-journal">Journal Name, Volume(Issue), Pages. DOI</p>
-            <div class="pub-links">
-                <a href="#" class="pub-link">PDF</a>
-                <a href="#" class="pub-link">DOI</a>
-                <a href="#" class="pub-link">PubMed</a>
-            </div>
-        </div>
+        <h2 class="pub-year">2015</h2>
 
         <div class="pub-item">
-            <p class="pub-title"><a href="#">Another Example Publication</a></p>
-            <p class="pub-authors"><strong>Oestreich LKL</strong>, Author B, Author C</p>
-            <p class="pub-journal">Another Journal, 10(2), 100-115.</p>
-            <div class="pub-links">
-                <a href="#" class="pub-link">DOI</a>
-            </div>
-        </div>
-
-        <h2 class="pub-year">2024</h2>
-
-        <div class="pub-item">
-            <p class="pub-title"><a href="#">Publication from 2024</a></p>
-            <p class="pub-authors">Author A, <strong>Oestreich LKL</strong></p>
-            <p class="pub-journal">Journal Name, 5(1), 50-75.</p>
-            <div class="pub-links">
-                <a href="#" class="pub-link">PDF</a>
-                <a href="#" class="pub-link">DOI</a>
+            <img src="McCarthy-Jones2015_SchizRes_Thumbnail.jpeg" alt="Publication thumbnail" class="pub-thumbnail">
+            <div class="pub-content">
+                <p class="pub-title"><a href="https://doi.org/10.1016/j.schres.2014.12.041">Reduced integrity of the left arcuate fasciculus is specifically associated with auditory verbal hallucinations in schizophrenia</a></p>
+                <p class="pub-authors">McCarthy-Jones S, <strong>Oestreich LKL</strong>, Australian Schizophrenia Research Bank, Whitford TJ</p>
+                <p class="pub-journal">Schizophrenia Research, 162(1-3), 1-6.</p>
+                <div class="pub-links">
+                    <a href="McCarthy-Jones2015_SchizRes.pdf" class="pub-link" target="_blank">PDF</a>
+                    <a href="https://doi.org/10.1016/j.schres.2014.12.041" class="pub-link" target="_blank">DOI</a>
+                </div>
             </div>
         </div>
 
