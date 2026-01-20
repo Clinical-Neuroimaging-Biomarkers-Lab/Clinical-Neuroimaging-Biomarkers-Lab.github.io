@@ -1231,9 +1231,15 @@
             worldCopyJump: true
         });
 
+        // Base map without labels
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             attribution: '© OpenStreetMap © CARTO',
             subdomains: 'abcd'
+        }).addTo(map);
+
+        // English labels overlay (ESRI)
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+            attribution: ''
         }).addTo(map);
 
         const labIcon = L.divIcon({ className: 'lab-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
