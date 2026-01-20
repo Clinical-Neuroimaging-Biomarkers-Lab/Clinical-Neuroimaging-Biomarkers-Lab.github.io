@@ -337,6 +337,13 @@
             font-size: 1rem;
             color: white;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .team-card h4 {
@@ -620,6 +627,47 @@
             font-size: 1.25rem;
             color: white;
             margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .modal-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-links {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .modal-link:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+
+        .modal-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
         }
 
         .modal h3 {
@@ -759,7 +807,7 @@
             <div class="team-grid">
                 <div class="team-card" data-member="lena">
                     <div class="team-card-header">
-                        <div class="team-avatar">LO</div>
+                        <div class="team-avatar"><img src="team-lena-oestreich.jpg" alt="Lena Oestreich"></div>
                         <div>
                             <h4>Lena Oestreich</h4>
                             <p class="team-origin">🇩🇪 Germany</p>
@@ -770,7 +818,7 @@
 
                 <div class="team-card" data-member="sarah">
                     <div class="team-card-header">
-                        <div class="team-avatar">SK</div>
+                        <div class="team-avatar"><img src="team-sarah-khalife.jpg" alt="Sarah Khalife"></div>
                         <div>
                             <h4>Sarah Khalife</h4>
                             <p class="team-origin">🇱🇧 Lebanon</p>
@@ -778,10 +826,10 @@
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="xuqian">
                     <div class="team-card-header">
-                        <div class="team-avatar">XL</div>
+                        <div class="team-avatar"><img src="team-xuqian-li.png" alt="Xuqian Li"></div>
                         <div>
                             <h4>Xuqian Li</h4>
                             <p class="team-origin">🇨🇳 China</p>
@@ -789,21 +837,21 @@
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="chrystal">
                     <div class="team-card-header">
                         <div class="team-avatar">CD</div>
                         <div>
                             <h4>Chrystal Douflias</h4>
-                            <p class="team-origin">🇬🇷 Greece</p>
+                            <p class="team-origin">🇦🇺 Australia</p>
                         </div>
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="hamad">
                     <div class="team-card-header">
-                        <div class="team-avatar">HM</div>
+                        <div class="team-avatar"><img src="team-hamad-mhanna.jpg" alt="Hamad Mhanna"></div>
                         <div>
                             <h4>Hamad Mhanna</h4>
                             <p class="team-origin">🇯🇴 Jordan</p>
@@ -811,10 +859,10 @@
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="mamaru">
                     <div class="team-card-header">
-                        <div class="team-avatar">MA</div>
+                        <div class="team-avatar"><img src="team-mamaru-amsalu.jpg" alt="Mamaru Amsalu"></div>
                         <div>
                             <h4>Mamaru Amsalu</h4>
                             <p class="team-origin">🇪🇹 Ethiopia</p>
@@ -822,7 +870,7 @@
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="aveechal">
                     <div class="team-card-header">
                         <div class="team-avatar">AP</div>
@@ -833,7 +881,7 @@
                     </div>
                     <p class="team-hint">Click for more info →</p>
                 </div>
-                
+
                 <div class="team-card" data-member="matthew">
                     <div class="team-card-header">
                         <div class="team-avatar">MT</div>
@@ -971,6 +1019,7 @@
             <h3 id="modalName">Member Name</h3>
             <p class="modal-origin" id="modalOrigin">Country</p>
             <p class="modal-bio" id="modalBio">Bio text...</p>
+            <div class="modal-links" id="modalLinks"></div>
         </div>
     </div>
 
@@ -979,14 +1028,86 @@
         const labLocation = { lat: -27.4975, lng: 153.0137 };
         
         const teamMembers = [
-            { name: 'Lena Oestreich', initials: 'LO', country: 'Germany', flag: '🇩🇪', lat: 51.1657, lng: 10.4515, bio: 'Research focus and bio to be added.' },
-            { name: 'Sarah Khalife', initials: 'SK', country: 'Lebanon', flag: '🇱🇧', lat: 33.8547, lng: 35.8623, bio: 'Research focus and bio to be added.' },
-            { name: 'Xuqian Li', initials: 'XL', country: 'China', flag: '🇨🇳', lat: 35.8617, lng: 104.1954, bio: 'Research focus and bio to be added.' },
-            { name: 'Chrystal Douflias', initials: 'CD', country: 'Greece', flag: '🇬🇷', lat: 39.0742, lng: 21.8243, bio: 'Research focus and bio to be added.' },
-            { name: 'Hamad Mhanna', initials: 'HM', country: 'Jordan', flag: '🇯🇴', lat: 30.5852, lng: 36.2384, bio: 'Research focus and bio to be added.' },
-            { name: 'Mamaru Amsalu', initials: 'MA', country: 'Ethiopia', flag: '🇪🇹', lat: 9.1450, lng: 40.4897, bio: 'Research focus and bio to be added.' },
-            { name: 'Aveechal Prasad', initials: 'AP', country: 'Australia', flag: '🇦🇺', lat: -25.2744, lng: 133.7751, bio: 'Research focus and bio to be added.' },
-            { name: 'Matthew Thurston', initials: 'MT', country: 'United States', flag: '🇺🇸', lat: 37.0902, lng: -95.7129, bio: 'Research focus and bio to be added.' }
+            {
+                name: 'Lena Oestreich',
+                initials: 'LO',
+                country: 'Germany',
+                flag: '🇩🇪',
+                lat: 51.1657,
+                lng: 10.4515,
+                photo: 'team-lena-oestreich.jpg',
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Sarah Khalife',
+                initials: 'SK',
+                country: 'Lebanon',
+                flag: '🇱🇧',
+                lat: 33.8547,
+                lng: 35.8623,
+                photo: 'team-sarah-khalife.jpg',
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Xuqian Li',
+                initials: 'XL',
+                country: 'China',
+                flag: '🇨🇳',
+                lat: 35.8617,
+                lng: 104.1954,
+                photo: 'team-xuqian-li.png',
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Chrystal Douflias',
+                initials: 'CD',
+                country: 'Australia',
+                flag: '🇦🇺',
+                lat: -25.2744,
+                lng: 133.7751,
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Hamad Mhanna',
+                initials: 'HM',
+                country: 'Jordan',
+                flag: '🇯🇴',
+                lat: 30.5852,
+                lng: 36.2384,
+                photo: 'team-hamad-mhanna.jpg',
+                bio: 'I am a PhD candidate at The University of Queensland, Faculty of Health, Medicine and Behavioural Sciences. My research focuses on MRI-derived Brain Age Gap (BAG) as a transdiagnostic biomarker across neurological and psychiatric disorders, using large-scale datasets (e.g. UK biobank dataset) and advanced statistical modelling. I am particularly interested in methodological reliability, bias correction, and clinical interpretation of BAG. My background is in medical imaging, with experience in neuroimaging pipelines, quantitative modelling, and systematic reviews, and meta-analyses. Outside research, I enjoy turning complex neuroimaging data into clear, clinically meaningful insights and collaborating across disciplines.',
+                orcid: '0000-0001-6629-3297',
+                scholar: 'https://scholar.google.com.au/citations?user=vStZXWEAAAAJ&hl=en',
+                website: 'https://www.researchgate.net/profile/Hamad-Abu-Mhanna'
+            },
+            {
+                name: 'Mamaru Amsalu',
+                initials: 'MA',
+                country: 'Ethiopia',
+                flag: '🇪🇹',
+                lat: 9.1450,
+                lng: 40.4897,
+                photo: 'team-mamaru-amsalu.jpg',
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Aveechal Prasad',
+                initials: 'AP',
+                country: 'Australia',
+                flag: '🇦🇺',
+                lat: -25.2744,
+                lng: 133.7751,
+                bio: 'Research focus and bio to be added.'
+            },
+            {
+                name: 'Matthew Thurston',
+                initials: 'MT',
+                country: 'United States',
+                flag: '🇺🇸',
+                lat: 37.0902,
+                lng: -95.7129,
+                bio: 'Research focus and bio to be added.'
+            }
         ];
 
         const map = L.map('map', {
@@ -1027,10 +1148,40 @@
                 const memberName = this.querySelector('h4').textContent;
                 const member = teamMembers.find(m => m.name === memberName);
                 if (member) {
-                    document.getElementById('modalAvatar').textContent = member.initials;
+                    const avatarEl = document.getElementById('modalAvatar');
+                    if (member.photo) {
+                        avatarEl.innerHTML = `<img src="${member.photo}" alt="${member.name}">`;
+                    } else {
+                        avatarEl.innerHTML = member.initials;
+                    }
                     document.getElementById('modalName').textContent = member.name;
                     document.getElementById('modalOrigin').textContent = `${member.flag} ${member.country}`;
                     document.getElementById('modalBio').textContent = member.bio;
+
+                    // Build links
+                    const linksEl = document.getElementById('modalLinks');
+                    let linksHtml = '';
+                    if (member.orcid) {
+                        linksHtml += `<a href="https://orcid.org/${member.orcid}" target="_blank" class="modal-link">
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.209-.619-3.722-3.978-3.722h-2.341z"/></svg>
+                            ORCID
+                        </a>`;
+                    }
+                    if (member.scholar) {
+                        linksHtml += `<a href="${member.scholar}" target="_blank" class="modal-link">
+                            <svg viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                            Google Scholar
+                        </a>`;
+                    }
+                    if (member.website) {
+                        linksHtml += `<a href="${member.website}" target="_blank" class="modal-link">
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1 17.889V19H9v-1.111c-1.334-.248-2.248-.912-2.635-1.889l1.412-.588c.248.684.869 1.088 1.723 1.088.869 0 1.461-.478 1.461-1.201 0-.672-.504-1.043-1.412-1.287l-.748-.207c-1.412-.387-2.248-1.162-2.248-2.314 0-1.172.896-2.064 2.447-2.328V8h2v1.146c1.162.207 1.963.784 2.314 1.684l-1.361.639c-.207-.551-.695-.912-1.439-.912-.744 0-1.287.391-1.287 1.008 0 .568.439.912 1.287 1.119l.748.207c1.52.42 2.373 1.183 2.373 2.449 0 1.287-.957 2.201-2.635 2.449zm6.635-5.889H16v2h1.635v2H16v2h-2v-2h-1.635v-2H14v-2h-1.635v-2H14v-2h2v2h1.635v2z"/></svg>
+                            Website
+                        </a>`;
+                    }
+                    linksEl.innerHTML = linksHtml;
+                    linksEl.style.display = linksHtml ? 'flex' : 'none';
+
                     document.getElementById('memberModal').classList.add('active');
                 }
             });
