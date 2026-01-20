@@ -388,6 +388,13 @@
             margin-bottom: 0.125rem;
         }
 
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 0.125rem;
+        }
+
         .team-origin {
             font-size: 0.85rem;
             color: var(--color-text-muted);
@@ -711,6 +718,13 @@
             margin-bottom: 0.25rem;
         }
 
+        .modal-role {
+            color: var(--color-accent);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
         .modal-origin {
             color: var(--color-text-muted);
             font-size: 0.95rem;
@@ -845,6 +859,7 @@
                         <div class="team-avatar"><img src="team-lena-oestreich.jpg" alt="Lena Oestreich"></div>
                         <div>
                             <h4>Lena Oestreich</h4>
+                            <p class="team-role">Principal Investigator</p>
                             <p class="team-origin">🇩🇪 Germany</p>
                         </div>
                     </div>
@@ -856,6 +871,7 @@
                         <div class="team-avatar"><img src="team-sarah-khalife.jpg" alt="Sarah Khalife"></div>
                         <div>
                             <h4>Sarah Khalife</h4>
+                            <p class="team-role">PhD Student</p>
                             <p class="team-origin">🇱🇧 Lebanon</p>
                         </div>
                     </div>
@@ -867,6 +883,7 @@
                         <div class="team-avatar"><img src="team-xuqian-li.png" alt="Xuqian Li"></div>
                         <div>
                             <h4>Xuqian Li</h4>
+                            <p class="team-role">Postdoc</p>
                             <p class="team-origin">🇨🇳 China</p>
                         </div>
                     </div>
@@ -878,6 +895,7 @@
                         <div class="team-avatar"><img src="team-chrystal-douflias.jpg" alt="Chrystal Douflias"></div>
                         <div>
                             <h4>Chrystal Douflias</h4>
+                            <p class="team-role">PhD Student</p>
                             <p class="team-origin">🇦🇺 Australia</p>
                         </div>
                     </div>
@@ -889,6 +907,7 @@
                         <div class="team-avatar"><img src="team-hamad-mhanna.jpg" alt="Hamad Mhanna"></div>
                         <div>
                             <h4>Hamad Mhanna</h4>
+                            <p class="team-role">PhD Student</p>
                             <p class="team-origin">🇯🇴 Jordan</p>
                         </div>
                     </div>
@@ -900,6 +919,7 @@
                         <div class="team-avatar"><img src="team-mamaru-amsalu.jpg" alt="Mamaru Amsalu"></div>
                         <div>
                             <h4>Mamaru Amsalu</h4>
+                            <p class="team-role">PhD Student</p>
                             <p class="team-origin">🇪🇹 Ethiopia</p>
                         </div>
                     </div>
@@ -911,6 +931,7 @@
                         <div class="team-avatar">AP</div>
                         <div>
                             <h4>Aveechal Prasad</h4>
+                            <p class="team-role">MPhil Student</p>
                             <p class="team-origin">🇦🇺 Australia</p>
                         </div>
                     </div>
@@ -922,6 +943,7 @@
                         <div class="team-avatar">MT</div>
                         <div>
                             <h4>Matthew Thurston</h4>
+                            <p class="team-role">PhD Student</p>
                             <p class="team-origin">🇺🇸 United States</p>
                         </div>
                     </div>
@@ -1052,6 +1074,7 @@
             <button class="modal-close" onclick="closeModal()">×</button>
             <div class="modal-avatar" id="modalAvatar">SK</div>
             <h3 id="modalName">Member Name</h3>
+            <p class="modal-role" id="modalRole">Role</p>
             <p class="modal-origin" id="modalOrigin">Country</p>
             <p class="modal-bio" id="modalBio">Bio text...</p>
             <div class="modal-links" id="modalLinks"></div>
@@ -1066,6 +1089,7 @@
             {
                 name: 'Lena Oestreich',
                 initials: 'LO',
+                role: 'Principal Investigator',
                 country: 'Germany',
                 flag: '🇩🇪',
                 lat: 51.1657,
@@ -1082,6 +1106,7 @@
             {
                 name: 'Sarah Khalife',
                 initials: 'SK',
+                role: 'PhD Student',
                 country: 'Lebanon',
                 flag: '🇱🇧',
                 lat: 36.0,
@@ -1096,6 +1121,7 @@
             {
                 name: 'Xuqian Li',
                 initials: 'XL',
+                role: 'Postdoc',
                 country: 'China',
                 flag: '🇨🇳',
                 lat: 35.8617,
@@ -1110,6 +1136,7 @@
             {
                 name: 'Chrystal Douflias',
                 initials: 'CD',
+                role: 'PhD Student',
                 country: 'Australia',
                 flag: '🇦🇺',
                 lat: -34.9285,
@@ -1123,6 +1150,7 @@
             {
                 name: 'Hamad Mhanna',
                 initials: 'HM',
+                role: 'PhD Student',
                 country: 'Jordan',
                 flag: '🇯🇴',
                 lat: 28.0,
@@ -1136,6 +1164,7 @@
             {
                 name: 'Mamaru Amsalu',
                 initials: 'MA',
+                role: 'PhD Student',
                 country: 'Ethiopia',
                 flag: '🇪🇹',
                 lat: 9.1450,
@@ -1147,6 +1176,7 @@
             {
                 name: 'Aveechal Prasad',
                 initials: 'AP',
+                role: 'MPhil Student',
                 country: 'Australia',
                 flag: '🇦🇺',
                 lat: -25.2744,
@@ -1156,6 +1186,7 @@
             {
                 name: 'Matthew Thurston',
                 initials: 'MT',
+                role: 'PhD Student',
                 country: 'United States',
                 flag: '🇺🇸',
                 lat: 37.0902,
@@ -1224,6 +1255,8 @@
                         avatarEl.innerHTML = member.initials;
                     }
                     document.getElementById('modalName').textContent = member.name;
+                    document.getElementById('modalRole').textContent = member.role || '';
+                    document.getElementById('modalRole').style.display = member.role ? 'block' : 'none';
                     document.getElementById('modalOrigin').textContent = `${member.flag} ${member.country}`;
                     document.getElementById('modalBio').textContent = member.bio;
 
