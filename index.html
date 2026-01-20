@@ -292,49 +292,29 @@
         .legend-dot.lab { background: var(--color-accent); }
         .legend-dot.member { background: var(--color-text); }
 
-        .member-marker {
-            background: var(--color-text);
-            border: 2px solid white;
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-
         .member-photo-marker {
-            width: 36px !important;
-            height: 36px !important;
-            min-width: 36px;
-            min-height: 36px;
-            max-width: 36px;
-            max-height: 36px;
-            border-radius: 50% !important;
-            border: 2px solid white !important;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid white;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            object-fit: cover !important;
             background: var(--color-text);
-            display: block;
+            cursor: pointer;
         }
 
         .lab-marker {
+            width: 18px;
+            height: 18px;
             background: var(--color-accent);
             border: 2px solid white;
             border-radius: 50%;
             box-shadow: 0 2px 6px rgba(42, 157, 143, 0.4);
+            cursor: pointer;
         }
 
-        .leaflet-top,
-        .leaflet-bottom,
         .leaflet-control-zoom,
-        .leaflet-control-attribution,
-        .leaflet-control {
+        .leaflet-control-attribution {
             z-index: 400 !important;
-        }
-
-        #map {
-            z-index: 1;
-        }
-
-        .english-labels {
-            filter: grayscale(100%) brightness(2) contrast(0.3) drop-shadow(0 0 2px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white);
         }
 
         /* Team Grid */
@@ -1100,7 +1080,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const labLocation = { lat: -27.4975, lng: 153.0137 };
-        
+
         const teamMembers = [
             {
                 name: 'Lena Oestreich',
@@ -1227,90 +1207,94 @@
             }
         ];
 
+        // Initialize Leaflet map
         const map = L.map('map', {
             center: [20, 50],
             zoom: 2,
             minZoom: 2,
-            maxZoom: 6,
-            worldCopyJump: true
+            maxZoom: 6
         });
 
-        // Base map without labels
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-            attribution: '© OpenStreetMap © CARTO',
-            subdomains: 'abcd'
+        // Add CARTO light tiles with labels
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
         }).addTo(map);
 
-        // English labels overlay (ESRI - styled to remove outline)
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '',
-            className: 'english-labels'
-        }).addTo(map);
+        // Store markers and lines for dynamic updates
+        const markerObjects = [];
+        const lineObjects = [];
 
-        const labIcon = L.divIcon({ className: 'lab-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
+        // Add lab marker
+        const labIcon = L.divIcon({
+            className: 'lab-marker',
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
+        });
+        const labMarker = L.marker([labLocation.lat, labLocation.lng], { icon: labIcon })
+            .bindPopup('<strong>CNB Lab</strong><br>University of Queensland')
+            .addTo(map);
 
-        L.marker([labLocation.lat, labLocation.lng], { icon: labIcon })
-            .addTo(map)
-            .bindPopup('<strong>CNB Lab</strong><br>University of Queensland');
-
-        const markers = [];
-        const lines = [];
-
+        // Add team member markers and lines
         teamMembers.forEach((member, index) => {
-            let markerIcon;
-            if (member.photo) {
-                markerIcon = L.divIcon({
-                    className: '',
-                    html: `<div class="member-photo-marker" style="overflow:hidden;"><img src="${member.photo}" alt="${member.name}" style="width:100%;height:100%;object-fit:cover;"></div>`,
-                    iconSize: [36, 36],
-                    iconAnchor: [18, 18]
-                });
-            } else {
-                markerIcon = L.divIcon({
-                    className: '',
-                    html: `<div class="member-photo-marker" style="display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:12px;">${member.initials}</div>`,
-                    iconSize: [36, 36],
-                    iconAnchor: [18, 18]
-                });
-            }
+            const startLat = member.offsetLat !== undefined ? member.offsetLat : member.lat;
+            const startLng = member.offsetLng !== undefined ? member.offsetLng : member.lng;
 
-            // Use offset position for zoomed out view if available
-            const initialLat = member.offsetLat !== undefined ? member.offsetLat : member.lat;
-            const initialLng = member.offsetLng !== undefined ? member.offsetLng : member.lng;
-
-            const marker = L.marker([initialLat, initialLng], { icon: markerIcon })
-                .addTo(map)
-                .bindPopup(`<strong>${member.name}</strong><br>${member.flag} ${member.country}`);
-            markers.push({ marker, member });
-
-            const line = L.polyline([[initialLat, initialLng], [labLocation.lat, labLocation.lng]], {
+            // Create line
+            const line = L.polyline([[startLat, startLng], [labLocation.lat, labLocation.lng]], {
                 color: '#333333',
                 weight: 1,
                 opacity: 0.3,
                 dashArray: '4, 6'
             }).addTo(map);
-            lines.push({ line, member });
+            lineObjects.push({ line, member });
+
+            // Create photo marker
+            let iconHtml;
+            if (member.photo) {
+                iconHtml = `<img src="${member.photo}" alt="${member.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else {
+                iconHtml = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:12px;">${member.initials}</div>`;
+            }
+
+            const memberIcon = L.divIcon({
+                className: 'member-photo-marker',
+                html: iconHtml,
+                iconSize: [36, 36],
+                iconAnchor: [18, 18]
+            });
+
+            const marker = L.marker([startLat, startLng], { icon: memberIcon })
+                .bindPopup(`<strong>${member.name}</strong><br>${member.flag} ${member.country}`)
+                .addTo(map);
+
+            markerObjects.push({ marker, member });
         });
 
-        // Update marker positions based on zoom level
+        // Update marker and line positions based on zoom level
         map.on('zoomend', function() {
             const zoom = map.getZoom();
-            markers.forEach(({ marker, member }) => {
+            const t = Math.min(1, Math.max(0, (zoom - 2) / 2));
+
+            markerObjects.forEach(({ marker, member }) => {
                 if (member.offsetLat !== undefined) {
-                    // Transition from offset to actual position as zoom increases
-                    const t = Math.min(1, Math.max(0, (zoom - 2) / 2)); // Transition between zoom 2-4
                     const lat = member.offsetLat + (member.lat - member.offsetLat) * t;
                     const lng = member.offsetLng + (member.lng - member.offsetLng) * t;
                     marker.setLatLng([lat, lng]);
                 }
             });
-            lines.forEach(({ line, member }) => {
+
+            lineObjects.forEach(({ line, member }) => {
+                let lat, lng;
                 if (member.offsetLat !== undefined) {
-                    const t = Math.min(1, Math.max(0, (zoom - 2) / 2));
-                    const lat = member.offsetLat + (member.lat - member.offsetLat) * t;
-                    const lng = member.offsetLng + (member.lng - member.offsetLng) * t;
-                    line.setLatLngs([[lat, lng], [labLocation.lat, labLocation.lng]]);
+                    lat = member.offsetLat + (member.lat - member.offsetLat) * t;
+                    lng = member.offsetLng + (member.lng - member.offsetLng) * t;
+                } else {
+                    lat = member.lat;
+                    lng = member.lng;
                 }
+                line.setLatLngs([[lat, lng], [labLocation.lat, labLocation.lng]]);
             });
         });
 
