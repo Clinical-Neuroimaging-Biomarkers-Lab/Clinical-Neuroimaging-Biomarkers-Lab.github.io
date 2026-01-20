@@ -1121,8 +1121,10 @@
                 role: 'PhD Student',
                 country: 'Lebanon',
                 flag: '🇱🇧',
-                lat: 36.0,
-                lng: 32.0,
+                lat: 33.8547,
+                lng: 35.8623,
+                offsetLat: 36.0,
+                offsetLng: 32.0,
                 photo: 'team-sarah-khalife.jpg',
                 bio: "I am currently a PhD student at The University of Queensland interested in investigating the etiology of depression using large-scale datasets. My research uses diffusion MRI and quantitative susceptibility mapping to examine associations between neuroinflammatory markers and microstructural changes in the ventral tegmental area in depression. Alongside my PhD, I am involved in open science, Equity, Diversity, and Inclusion, and mental health initiatives. I have co-organised OHBM's BrainHack 2025, served on my school's EDI committee, and act as a mental health champion at UQ. Apart from being a full-time nerd, here's a bit more context about the human side of me: I'm 100% Lebanese, I love hosting dinner parties and I lose almost every board game night (even the ones I host at my own place). My favourite hobby is overwatering and killing plants (gardening).",
                 orcid: '0000-0002-5274-3565',
@@ -1165,8 +1167,10 @@
                 role: 'PhD Student',
                 country: 'Jordan',
                 flag: '🇯🇴',
-                lat: 28.0,
-                lng: 39.0,
+                lat: 31.9,
+                lng: 35.9,
+                offsetLat: 28.0,
+                offsetLng: 39.0,
                 photo: 'team-hamad-mhanna.jpg',
                 bio: 'I am a PhD candidate at The University of Queensland, Faculty of Health, Medicine and Behavioural Sciences. My research focuses on MRI-derived Brain Age Gap (BAG) as a transdiagnostic biomarker across neurological and psychiatric disorders, using large-scale datasets (e.g. UK biobank dataset) and advanced statistical modelling. I am particularly interested in methodological reliability, bias correction, and clinical interpretation of BAG. My background is in medical imaging, with experience in neuroimaging pipelines, quantitative modelling, and systematic reviews, and meta-analyses. Outside research, I enjoy turning complex neuroimaging data into clear, clinically meaningful insights and collaborating across disciplines.',
                 orcid: '0000-0001-6629-3297',
@@ -1238,7 +1242,10 @@
             .addTo(map)
             .bindPopup('<strong>CNB Lab</strong><br>University of Queensland');
 
-        teamMembers.forEach(member => {
+        const markers = [];
+        const lines = [];
+
+        teamMembers.forEach((member, index) => {
             let markerIcon;
             if (member.photo) {
                 markerIcon = L.divIcon({
@@ -1255,16 +1262,45 @@
                     iconAnchor: [18, 18]
                 });
             }
-            L.marker([member.lat, member.lng], { icon: markerIcon })
+
+            // Use offset position for zoomed out view if available
+            const initialLat = member.offsetLat !== undefined ? member.offsetLat : member.lat;
+            const initialLng = member.offsetLng !== undefined ? member.offsetLng : member.lng;
+
+            const marker = L.marker([initialLat, initialLng], { icon: markerIcon })
                 .addTo(map)
                 .bindPopup(`<strong>${member.name}</strong><br>${member.flag} ${member.country}`);
-            
-            L.polyline([[member.lat, member.lng], [labLocation.lat, labLocation.lng]], {
+            markers.push({ marker, member });
+
+            const line = L.polyline([[initialLat, initialLng], [labLocation.lat, labLocation.lng]], {
                 color: '#333333',
                 weight: 1,
                 opacity: 0.3,
                 dashArray: '4, 6'
             }).addTo(map);
+            lines.push({ line, member });
+        });
+
+        // Update marker positions based on zoom level
+        map.on('zoomend', function() {
+            const zoom = map.getZoom();
+            markers.forEach(({ marker, member }) => {
+                if (member.offsetLat !== undefined) {
+                    // Transition from offset to actual position as zoom increases
+                    const t = Math.min(1, Math.max(0, (zoom - 2) / 2)); // Transition between zoom 2-4
+                    const lat = member.offsetLat + (member.lat - member.offsetLat) * t;
+                    const lng = member.offsetLng + (member.lng - member.offsetLng) * t;
+                    marker.setLatLng([lat, lng]);
+                }
+            });
+            lines.forEach(({ line, member }) => {
+                if (member.offsetLat !== undefined) {
+                    const t = Math.min(1, Math.max(0, (zoom - 2) / 2));
+                    const lat = member.offsetLat + (member.lat - member.offsetLat) * t;
+                    const lng = member.offsetLng + (member.lng - member.offsetLng) * t;
+                    line.setLatLngs([[lat, lng], [labLocation.lat, labLocation.lng]]);
+                }
+            });
         });
 
         document.querySelectorAll('.team-card').forEach(card => {
