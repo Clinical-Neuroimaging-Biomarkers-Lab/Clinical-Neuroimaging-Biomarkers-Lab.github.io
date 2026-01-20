@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | CNB Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-alt: #f9f9f9;
+            --color-bg-card: #f3f3f3;
+            --color-primary: #333333;
+            --color-accent: #2a9d8f;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #444444;
+            --color-text-muted: #777777;
+            --color-border: #e0e0e0;
+            --font-main: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--color-bg);
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-text);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 2rem 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Publications Section */
+        .publications {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pub-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-text);
+        }
+
+        .pub-year:first-child {
+            margin-top: 0;
+        }
+
+        .pub-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--color-border);
+        }
+
+        .pub-item:hover {
+            border-left-color: var(--color-accent);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-title a {
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            text-decoration: underline;
+        }
+
+        .pub-authors {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-journal {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .pub-links {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+        }
+
+        .pub-link:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+
+        /* Placeholder message */
+        .placeholder-message {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-text-muted);
+            background: var(--color-bg-alt);
+            border-radius: 4px;
+            border: 1px dashed var(--color-border);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-alt);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .publications {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CNB Lab" class="nav-logo-img">CNB Lab</a>
+            <ul class="nav-links">
+                <li><a href="index.html#pi">About</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="publications.html" class="active">Publications</a></li>
+                <li><a href="index.html#news">News</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="index.html#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Publications</h1>
+        <p>Research from the Clinical Neuroimaging and Biomarkers Lab</p>
+    </div>
+
+    <!-- Publications List -->
+    <div class="publications">
+        <!-- Example format - replace with your actual publications -->
+
+        <h2 class="pub-year">2025</h2>
+
+        <div class="pub-item">
+            <p class="pub-title"><a href="#">Example Publication Title Goes Here</a></p>
+            <p class="pub-authors">Author A, Author B, <strong>Oestreich LKL</strong>, Author C</p>
+            <p class="pub-journal">Journal Name, Volume(Issue), Pages. DOI</p>
+            <div class="pub-links">
+                <a href="#" class="pub-link">PDF</a>
+                <a href="#" class="pub-link">DOI</a>
+                <a href="#" class="pub-link">PubMed</a>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <p class="pub-title"><a href="#">Another Example Publication</a></p>
+            <p class="pub-authors"><strong>Oestreich LKL</strong>, Author B, Author C</p>
+            <p class="pub-journal">Another Journal, 10(2), 100-115.</p>
+            <div class="pub-links">
+                <a href="#" class="pub-link">DOI</a>
+            </div>
+        </div>
+
+        <h2 class="pub-year">2024</h2>
+
+        <div class="pub-item">
+            <p class="pub-title"><a href="#">Publication from 2024</a></p>
+            <p class="pub-authors">Author A, <strong>Oestreich LKL</strong></p>
+            <p class="pub-journal">Journal Name, 5(1), 50-75.</p>
+            <div class="pub-links">
+                <a href="#" class="pub-link">PDF</a>
+                <a href="#" class="pub-link">DOI</a>
+            </div>
+        </div>
+
+        <!-- Add more years and publications as needed -->
+
+        <!--
+        TEMPLATE FOR ADDING PUBLICATIONS:
+
+        <h2 class="pub-year">YEAR</h2>
+
+        <div class="pub-item">
+            <p class="pub-title"><a href="LINK_TO_PAPER">Title of the Paper</a></p>
+            <p class="pub-authors">Author1, Author2, <strong>Your Name</strong>, Author3</p>
+            <p class="pub-journal">Journal Name, Volume(Issue), Pages. DOI</p>
+            <div class="pub-links">
+                <a href="PDF_LINK" class="pub-link">PDF</a>
+                <a href="DOI_LINK" class="pub-link">DOI</a>
+                <a href="PUBMED_LINK" class="pub-link">PubMed</a>
+            </div>
+        </div>
+        -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Clinical Neuroimaging & Biomarkers Lab</h3>
+                    <p>Australian Institute for Bioengineering and Nanotechnology<br>
+                    School of Psychology · University of Queensland<br>
+                    Brisbane, Australia</p>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:your.email@uq.edu.au">Contact</a>
+                    <a href="https://github.com/Clinical-Neuroimaging-Lab" target="_blank">GitHub</a>
+                    <a href="https://www.uq.edu.au" target="_blank">UQ Website</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clinical Neuroimaging and Biomarkers Lab</p>
+                <p>Committed to open science</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
