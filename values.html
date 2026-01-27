@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Values | CNB Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-alt: #f9f9f9;
+            --color-bg-card: #f3f3f3;
+            --color-primary: #333333;
+            --color-accent: #2a9d8f;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #444444;
+            --color-text-muted: #777777;
+            --color-border: #e0e0e0;
+            --font-main: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--color-bg);
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-text);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 2rem 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Values */
+        .values-content {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .value-card {
+            background: var(--color-bg-alt);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+        }
+
+        .value-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-alt);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .values-content {
+                padding: 3rem 1.5rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CNB Lab" class="nav-logo-img">CNB Lab</a>
+            <ul class="nav-links">
+                <li><a href="index.html#pi">About</a></li>
+                <li><a href="values.html" class="active">Values</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="index.html#news">News</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="index.html#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Our Values</h1>
+        <p>The principles that guide our work</p>
+    </div>
+
+    <!-- Values Content -->
+    <div class="values-content">
+        <div class="values-grid">
+            <div class="value-card">
+                <h4>Scientific Precision</h4>
+                <p>We pursue rigorous, reproducible research using advanced neuroimaging, computational modelling, and robust statistical methods to ensure our findings are reliable and meaningful.</p>
+            </div>
+            <div class="value-card">
+                <h4>Impact & Translation</h4>
+                <p>We are committed to translating discoveries into real-world clinical applications, bridging the gap between neuroscience research and improved treatments for trauma-related disorders.</p>
+            </div>
+            <div class="value-card">
+                <h4>Ethics & Lived Experience</h4>
+                <p>We centre the voices of those with lived experience in our research design and practice, ensuring our work is ethically grounded and meaningfully responsive to the communities we serve.</p>
+            </div>
+            <div class="value-card">
+                <h4>Open Collaboration</h4>
+                <p>We champion open science, data sharing, and interdisciplinary partnerships, believing that transparent and collaborative research accelerates progress for everyone.</p>
+            </div>
+            <div class="value-card">
+                <h4>Innovation Through Adversity</h4>
+                <p>We embrace creative problem-solving and novel technologies, from AI-enabled analysis to psychedelic-assisted therapies, to tackle the most challenging questions in mental health.</p>
+            </div>
+            <div class="value-card">
+                <h4>Excellence with Kindness</h4>
+                <p>We foster a supportive, inclusive lab culture where high standards and compassion coexist, empowering every team member to thrive and do their best work.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Clinical Neuroimaging & Biomarkers Lab</h3>
+                    <p>Australian Institute for Bioengineering and Nanotechnology<br>
+                    School of Psychology · University of Queensland<br>
+                    Brisbane, Australia</p>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:your.email@uq.edu.au">Contact</a>
+                    <a href="https://github.com/Clinical-Neuroimaging-Lab" target="_blank">GitHub</a>
+                    <a href="https://www.uq.edu.au" target="_blank">UQ Website</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clinical Neuroimaging and Biomarkers Lab</p>
+                <p>Committed to open science</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
