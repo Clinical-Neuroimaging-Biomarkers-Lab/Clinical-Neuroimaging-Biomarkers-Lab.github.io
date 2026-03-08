@@ -760,6 +760,79 @@
                 text-align: center;
             }
         }
+
+        /* Scientific Communities Marquee */
+        .communities {
+            padding: 60px 0;
+            background: var(--color-bg-alt);
+            text-align: center;
+        }
+
+        .communities .section-title {
+            margin-bottom: 8px;
+        }
+
+        .communities .section-subtitle {
+            margin-bottom: 16px;
+        }
+
+        .logo-marquee {
+            overflow: hidden;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .logo-marquee::before,
+        .logo-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 120px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .logo-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--color-bg-alt), transparent);
+        }
+
+        .logo-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--color-bg-alt), transparent);
+        }
+
+        .logo-track {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .logo-track:hover {
+            animation-play-state: paused;
+        }
+
+        .logo-track img {
+            height: 50px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: filter 0.3s, opacity 0.3s;
+            flex-shrink: 0;
+        }
+
+        .logo-track img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body>
@@ -1079,6 +1152,36 @@
                         <p>Connect and follow</p>
                     </div>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Communities -->
+    <section class="communities" id="communities">
+        <div class="section-container">
+            <h2 class="section-title">Our Scientific Communities</h2>
+            <p class="section-subtitle">Organisations and networks we are part of</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="logo-marquee">
+            <div class="logo-track">
+                <img src="LOGO_ACNS.svg" alt="ACNS">
+                <img src="LOGO_ANS.png" alt="ANS">
+                <img src="LOGO_BIYOME.png" alt="BIYOME">
+                <img src="LOGO_BPA.png" alt="BPA">
+                <img src="LOGO_BRAVEHEARTS.svg" alt="Bravehearts">
+                <img src="LOGO_ISMRM-2025-NewSite-Logo-1680x1200-1.png" alt="ISMRM">
+                <img src="LOGO_ohbm.png" alt="OHBM">
+                <img src="LOGO_UQ.svg" alt="UQ">
+                <!-- Duplicate set for seamless loop -->
+                <img src="LOGO_ACNS.svg" alt="ACNS">
+                <img src="LOGO_ANS.png" alt="ANS">
+                <img src="LOGO_BIYOME.png" alt="BIYOME">
+                <img src="LOGO_BPA.png" alt="BPA">
+                <img src="LOGO_BRAVEHEARTS.svg" alt="Bravehearts">
+                <img src="LOGO_ISMRM-2025-NewSite-Logo-1680x1200-1.png" alt="ISMRM">
+                <img src="LOGO_ohbm.png" alt="OHBM">
+                <img src="LOGO_UQ.svg" alt="UQ">
             </div>
         </div>
     </section>
