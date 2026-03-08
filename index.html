@@ -538,6 +538,18 @@
             opacity: 0.6;
         }
 
+        .funding-marquee::before {
+            background: linear-gradient(to right, var(--color-text), transparent);
+        }
+
+        .funding-marquee::after {
+            background: linear-gradient(to left, var(--color-text), transparent);
+        }
+
+        .funding-marquee .logo-track img {
+            height: 60px;
+        }
+
         /* Footer */
         footer {
             background: var(--color-bg-alt);
@@ -839,7 +851,7 @@
                 <li><a href="publications.html">Publications</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#resources">Resources</a></li>
-                <li><a href="#support">Support</a></li>
+                <li><a href="#funding">Funding</a></li>
             </ul>
         </div>
     </nav>
@@ -1178,12 +1190,25 @@
         </div>
     </section>
 
-    <!-- Support -->
-    <section class="support" id="support">
-        <h2>Support Our Research</h2>
-        <p>Your contribution helps advance groundbreaking research into trauma-related mental illness.</p>
-        <a href="https://giving.uq.edu.au/" target="_blank" class="btn btn-white">Donate to UQ Research</a>
-        <p class="support-note">Contact us for information on supporting the lab directly.</p>
+    <!-- Funding -->
+    <section class="support" id="funding">
+        <h2>Funding</h2>
+        <p>Our research is supported by the following organisations.</p>
+        <div class="logo-marquee funding-marquee">
+            <div class="logo-track">
+                <img src="FUNDING_LOGO_NHMRC.png" alt="NHMRC">
+                <img src="FUNDING_LOGO_ARC.webp" alt="ARC">
+                <img src="FUNDING_LOGO_AIBN.png" alt="AIBN">
+                <img src="FUNDING_LOGO_bbrf.png" alt="BBRF">
+                <img src="FUNDING_LOGO_psychology.png" alt="Psychology">
+                <!-- Duplicate set for seamless loop -->
+                <img src="FUNDING_LOGO_NHMRC.png" alt="NHMRC">
+                <img src="FUNDING_LOGO_ARC.webp" alt="ARC">
+                <img src="FUNDING_LOGO_AIBN.png" alt="AIBN">
+                <img src="FUNDING_LOGO_bbrf.png" alt="BBRF">
+                <img src="FUNDING_LOGO_psychology.png" alt="Psychology">
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
