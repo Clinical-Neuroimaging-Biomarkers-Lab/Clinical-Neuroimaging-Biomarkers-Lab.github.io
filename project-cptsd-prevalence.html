@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | CNB Lab</title>
+    <title>Prevalence and Risk Factors of CPTSD in Australia | CNB Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -122,52 +122,106 @@
             font-size: 1.1rem;
         }
 
-        /* Projects */
-        .projects-content {
+        /* Project Content */
+        .project-content {
             padding: 4rem 2rem;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-            gap: 1.5rem;
+        .project-description {
+            margin-bottom: 3rem;
         }
 
-        .project-card {
+        .project-description p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-cta {
             background: var(--color-bg-alt);
-            padding: 2rem;
-            border-radius: 4px;
             border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .project-cta h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-cta p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .project-cta .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 600;
             text-decoration: none;
-            color: var(--color-text);
-            transition: border-color 0.2s;
-            display: block;
+            border-radius: 4px;
+            background: var(--color-text);
+            color: white;
+            transition: background 0.2s;
         }
 
-        .project-card:hover {
-            border-color: var(--color-accent);
-            color: var(--color-text);
+        .project-cta .btn:hover {
+            background: #444;
+            color: white;
         }
 
-        .project-card h3 {
-            font-size: 1.15rem;
+        .project-people {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .people-group h3 {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .project-card p {
-            font-size: 0.9rem;
+        .people-group ul {
+            list-style: none;
+        }
+
+        .people-group li {
+            font-size: 0.95rem;
             color: var(--color-text-secondary);
-            line-height: 1.7;
+            padding: 0.35rem 0;
         }
 
-        .project-card .project-arrow {
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .back-link:hover {
             color: var(--color-accent);
         }
 
@@ -237,14 +291,14 @@
             }
 
             .page-header h1 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
-            .projects-content {
+            .project-content {
                 padding: 3rem 1.5rem;
             }
 
-            .projects-grid {
+            .project-people {
                 grid-template-columns: 1fr;
             }
 
@@ -279,29 +333,41 @@
 
     <!-- Page Header -->
     <div class="page-header">
-        <h1>Current Projects</h1>
-        <p>Our ongoing research initiatives</p>
+        <h1>Prevalence and Risk Factors of CPTSD in Australia</h1>
     </div>
 
-    <!-- Projects Content -->
-    <div class="projects-content">
-        <div class="projects-grid">
-            <a href="project-trauma-biobank.html" class="project-card">
-                <h3>Australian Trauma Biobank: Understanding CPTSD and PTSD</h3>
-                <p>Establishing a comprehensive biobank using multimodal approaches — MRI brain imaging, blood-based markers, physiological monitoring, and psychosocial assessments — to identify distinct neurobiological profiles associated with trauma-related disorders.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-stroke-disconnection.html" class="project-card">
-                <h3>Brain Disconnection and Psychiatric Outcomes After Stroke</h3>
-                <p>Investigating how structural and functional brain disconnections following stroke contribute to psychiatric complications, using advanced disconnectome mapping and large-scale stroke datasets to improve prediction of post-stroke outcomes.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-cptsd-prevalence.html" class="project-card">
-                <h3>Prevalence and Risk Factors of CPTSD in Australia</h3>
-                <p>Investigating the prevalence of CPTSD in the Australian adult population, its association with childhood maltreatment and comorbid conditions, and identifying targets for prevention and intervention.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="project-description">
+            <p>This project investigates the prevalence of Complex Post-Traumatic Stress Disorder (CPTSD) in the general Australian adult population and examines its association with childhood maltreatment, comorbid mental health conditions, and key risk and protective factors. As CPTSD is a relatively new diagnosis in the ICD-11, its prevalence and underlying drivers in Australia remain largely unknown.</p>
+            <p>Using a large-scale online study, we assess trauma exposure, CPTSD and PTSD symptoms, anxiety, depression, and well-being, alongside resilience and social support. This allows us to characterise how different types and timing of trauma — particularly childhood adversity — relate to symptom profiles and mental health outcomes.</p>
+            <p>The project aims to provide the first robust estimates of CPTSD prevalence in Australia, improve understanding of its clinical presentation, and identify targets for prevention and intervention, particularly for individuals exposed to early-life trauma.</p>
         </div>
+
+        <div class="project-cta">
+            <h3>Interested in participating?</h3>
+            <p>Take part in our online study.</p>
+            <a href="https://uqpsych.qualtrics.com/jfe/form/SV_3xh84EDmbpWKh5s" target="_blank" class="btn">Participate in the Study &rarr;</a>
+        </div>
+
+        <div class="project-people">
+            <div class="people-group">
+                <h3>Team</h3>
+                <ul>
+                    <li>Dr. Lena Oestreich</li>
+                    <li>Alice Mok</li>
+                </ul>
+            </div>
+            <div class="people-group">
+                <h3>Collaborators</h3>
+                <ul>
+                    <li>Prof. Julie Henry</li>
+                    <li>Dr. Fiona Maccallum</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="projects.html" class="back-link">&larr; Back to all projects</a>
     </div>
 
     <!-- Footer -->
