@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | CNB Lab</title>
+    <title>Depression, Resilience, and Mental Health in the UK Biobank | CNB Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -120,54 +120,91 @@
         .page-header p {
             color: var(--color-text-muted);
             font-size: 1.1rem;
-        }
-
-        /* Projects */
-        .projects-content {
-            padding: 4rem 2rem;
-            max-width: 1100px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-            gap: 1.5rem;
+        /* Project Content */
+        .project-content {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .project-card {
+        .project-overview {
+            margin-bottom: 3rem;
+        }
+
+        .project-overview p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-subproject {
             background: var(--color-bg-alt);
-            padding: 2rem;
-            border-radius: 4px;
             border: 1px solid var(--color-border);
-            text-decoration: none;
-            color: var(--color-text);
-            transition: border-color 0.2s;
-            display: block;
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .project-card:hover {
-            border-color: var(--color-accent);
-            color: var(--color-text);
+        .project-subproject h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        .project-card h3 {
-            font-size: 1.15rem;
+        .project-subproject p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .project-subproject p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-people {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+
+        .people-group h3 {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .project-card p {
-            font-size: 0.9rem;
+        .people-group ul {
+            list-style: none;
+        }
+
+        .people-group li {
+            font-size: 0.95rem;
             color: var(--color-text-secondary);
-            line-height: 1.7;
+            padding: 0.35rem 0;
         }
 
-        .project-card .project-arrow {
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .back-link:hover {
             color: var(--color-accent);
         }
 
@@ -237,14 +274,14 @@
             }
 
             .page-header h1 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
-            .projects-content {
+            .project-content {
                 padding: 3rem 1.5rem;
             }
 
-            .projects-grid {
+            .project-people {
                 grid-template-columns: 1fr;
             }
 
@@ -279,44 +316,47 @@
 
     <!-- Page Header -->
     <div class="page-header">
-        <h1>Current Projects</h1>
-        <p>Our ongoing research initiatives</p>
+        <h1>Depression, Resilience, and Mental Health in the UK Biobank</h1>
     </div>
 
-    <!-- Projects Content -->
-    <div class="projects-content">
-        <div class="projects-grid">
-            <a href="project-trauma-biobank.html" class="project-card">
-                <h3>Australian Trauma Biobank: Understanding CPTSD and PTSD</h3>
-                <p>Establishing a comprehensive biobank using multimodal approaches — MRI brain imaging, blood-based markers, physiological monitoring, and psychosocial assessments — to identify distinct neurobiological profiles associated with trauma-related disorders.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-stroke-disconnection.html" class="project-card">
-                <h3>Brain Disconnection and Psychiatric Outcomes After Stroke</h3>
-                <p>Investigating how structural and functional brain disconnections following stroke contribute to psychiatric complications, using advanced disconnectome mapping and large-scale stroke datasets to improve prediction of post-stroke outcomes.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-cptsd-prevalence.html" class="project-card">
-                <h3>Prevalence and Risk Factors of CPTSD in Australia</h3>
-                <p>Investigating the prevalence of CPTSD in the Australian adult population, its association with childhood maltreatment and comorbid conditions, and identifying targets for prevention and intervention.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-ethiopia-trauma.html" class="project-card">
-                <h3>Trauma Reactions in Internally Displaced People in Ethiopia</h3>
-                <p>Investigating the prevalence and impact of PTSD and CPTSD among internally displaced people in conflict-affected regions of Northwest Ethiopia, using culturally adapted clinical assessments.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-enigma-cptsd.html" class="project-card">
-                <h3>Global Neuroimaging of CPTSD: An ENIGMA–Trauma Biobank Collaboration</h3>
-                <p>The first large-scale international effort to investigate the neurobiology of CPTSD, integrating data from the ENIGMA-PTSD consortium with the Australian Trauma Biobank across thousands of trauma-exposed individuals worldwide.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-ukbiobank-depression.html" class="project-card">
-                <h3>Depression, Resilience, and Mental Health in the UK Biobank</h3>
-                <p>Leveraging multimodal data from over 500,000 UK Biobank participants to investigate how brain biology, environmental adversity, and genetic risk interact to shape vulnerability and resilience to mental illness.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="project-overview">
+            <p>This research program leverages large-scale data from the UK Biobank to investigate how mental illness emerges from the interaction of brain biology, environmental adversity, and genetic risk across the lifespan. Using multimodal data from over 500,000 individuals, including neuroimaging, mental health, lifestyle, and genetic information, we aim to identify population-level mechanisms of vulnerability and resilience.</p>
         </div>
+
+        <div class="project-subproject">
+            <h3>Neurobiology of Depression: The Ventral Tegmental Area (VTA) and its Connections</h3>
+            <p>This project investigates the role of the ventral tegmental area (VTA), a key hub in the brain's reward system, in depression. Using large-scale neuroimaging data, we examine how structural variation in the VTA relates to depressive symptoms and diagnosis, with a particular focus on imaging markers sensitive to neuroinflammation.</p>
+            <p>By focusing on a core dopaminergic region and its white matter connections, implicated in motivation, reward processing, and anhedonia, this work aims to clarify how disruptions in reward circuitry contribute to depression at a population level.</p>
+        </div>
+
+        <div class="project-subproject">
+            <h3>Brain–Mental Health Associations in the UK Biobank: A Comprehensive Reference Framework</h3>
+            <p>This project establishes an up-to-date roadmap for neuroimaging research in mental health using the UK Biobank dataset. As the UK Biobank continues to expand with repeated imaging and longitudinal mental health assessments, the increasing complexity of the dataset presents both opportunities and challenges for large-scale analyses.</p>
+            <p>Using multimodal imaging-derived phenotypes (IDPs) and a broad range of mental health phenotypes (MHPs), this project systematically quantifies associations across thousands of brain–behaviour pairs. We compute and validate effect sizes for cross-sectional relationships, as well as repeated-measures correlations to capture within-individual associations across time.</p>
+            <p>By creating a comprehensive, data-driven reference framework of brain–mental health associations, this work provides a foundation for future hypothesis-driven studies, longitudinal modelling, and biomarker discovery in population mental health.</p>
+        </div>
+
+        <div class="project-people">
+            <div class="people-group">
+                <h3>Team</h3>
+                <ul>
+                    <li>Dr. Lena Oestreich</li>
+                    <li>Sarah Khalife</li>
+                    <li>Dr. Xuqian Li</li>
+                </ul>
+            </div>
+            <div class="people-group">
+                <h3>Collaborators</h3>
+                <ul>
+                    <li>Dr. Steffen Bollmann</li>
+                    <li>Prof. Andrew Zalesky</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="projects.html" class="back-link">&larr; Back to all projects</a>
     </div>
 
     <!-- Footer -->
