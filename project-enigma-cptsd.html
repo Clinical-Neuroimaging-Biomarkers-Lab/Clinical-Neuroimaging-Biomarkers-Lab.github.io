@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | CNB Lab</title>
+    <title>Global Neuroimaging of CPTSD: ENIGMA–Trauma Biobank Collaboration | CNB Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -122,52 +122,65 @@
             font-size: 1.1rem;
         }
 
-        /* Projects */
-        .projects-content {
+        /* Project Content */
+        .project-content {
             padding: 4rem 2rem;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .projects-grid {
+        .project-description {
+            margin-bottom: 3rem;
+        }
+
+        .project-description p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-people {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .project-card {
-            background: var(--color-bg-alt);
-            padding: 2rem;
-            border-radius: 4px;
-            border: 1px solid var(--color-border);
-            text-decoration: none;
-            color: var(--color-text);
-            transition: border-color 0.2s;
-            display: block;
-        }
-
-        .project-card:hover {
-            border-color: var(--color-accent);
-            color: var(--color-text);
-        }
-
-        .project-card h3 {
-            font-size: 1.15rem;
+        .people-group h3 {
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .project-card p {
-            font-size: 0.9rem;
+        .people-group ul {
+            list-style: none;
+        }
+
+        .people-group li {
+            font-size: 0.95rem;
             color: var(--color-text-secondary);
-            line-height: 1.7;
+            padding: 0.35rem 0;
         }
 
-        .project-card .project-arrow {
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .back-link:hover {
             color: var(--color-accent);
         }
 
@@ -237,14 +250,14 @@
             }
 
             .page-header h1 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
-            .projects-content {
+            .project-content {
                 padding: 3rem 1.5rem;
             }
 
-            .projects-grid {
+            .project-people {
                 grid-template-columns: 1fr;
             }
 
@@ -279,39 +292,41 @@
 
     <!-- Page Header -->
     <div class="page-header">
-        <h1>Current Projects</h1>
-        <p>Our ongoing research initiatives</p>
+        <h1>Global Neuroimaging of CPTSD: An ENIGMA–Trauma Biobank Collaboration</h1>
     </div>
 
-    <!-- Projects Content -->
-    <div class="projects-content">
-        <div class="projects-grid">
-            <a href="project-trauma-biobank.html" class="project-card">
-                <h3>Australian Trauma Biobank: Understanding CPTSD and PTSD</h3>
-                <p>Establishing a comprehensive biobank using multimodal approaches — MRI brain imaging, blood-based markers, physiological monitoring, and psychosocial assessments — to identify distinct neurobiological profiles associated with trauma-related disorders.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-stroke-disconnection.html" class="project-card">
-                <h3>Brain Disconnection and Psychiatric Outcomes After Stroke</h3>
-                <p>Investigating how structural and functional brain disconnections following stroke contribute to psychiatric complications, using advanced disconnectome mapping and large-scale stroke datasets to improve prediction of post-stroke outcomes.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-cptsd-prevalence.html" class="project-card">
-                <h3>Prevalence and Risk Factors of CPTSD in Australia</h3>
-                <p>Investigating the prevalence of CPTSD in the Australian adult population, its association with childhood maltreatment and comorbid conditions, and identifying targets for prevention and intervention.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-ethiopia-trauma.html" class="project-card">
-                <h3>Trauma Reactions in Internally Displaced People in Ethiopia</h3>
-                <p>Investigating the prevalence and impact of PTSD and CPTSD among internally displaced people in conflict-affected regions of Northwest Ethiopia, using culturally adapted clinical assessments.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
-            <a href="project-enigma-cptsd.html" class="project-card">
-                <h3>Global Neuroimaging of CPTSD: An ENIGMA–Trauma Biobank Collaboration</h3>
-                <p>The first large-scale international effort to investigate the neurobiology of CPTSD, integrating data from the ENIGMA-PTSD consortium with the Australian Trauma Biobank across thousands of trauma-exposed individuals worldwide.</p>
-                <span class="project-arrow">Learn more &rarr;</span>
-            </a>
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="project-description">
+            <p>This project is the first large-scale international effort to investigate the neurobiology of Complex Post-Traumatic Stress Disorder (CPTSD). While CPTSD is increasingly recognised as distinct from PTSD, its underlying brain mechanisms remain largely unknown due to limited sample sizes and lack of harmonised data across studies.</p>
+            <p>This collaboration between The University of Queensland and Emory University integrates data from the ENIGMA-PTSD consortium with the Australian Trauma Biobank, enabling analyses across thousands of trauma-exposed individuals worldwide. Using advanced neuroimaging approaches, including cortical morphometry and along-tract white matter analyses, the project examines whether CPTSD is associated with distinct patterns of brain structure and connectivity compared to PTSD.</p>
+            <p>By harmonising clinical measures across international cohorts and applying scalable analysis pipelines, the study aims to identify robust neurobiological markers of CPTSD. These findings will contribute to improved diagnosis, inform targeted treatments, and establish a global research framework for trauma-related disorders.</p>
         </div>
+
+        <div class="project-people">
+            <div class="people-group">
+                <h3>Team</h3>
+                <ul>
+                    <li>Dr. Lena Oestreich</li>
+                    <li>Dr. Xuqian Li</li>
+                </ul>
+            </div>
+            <div class="people-group">
+                <h3>Collaborators</h3>
+                <ul>
+                    <li>Prof. Jennifer Stevens</li>
+                    <li>Dr. Nicolas Murgueitio</li>
+                </ul>
+            </div>
+            <div class="people-group">
+                <h3>ENIGMA PTSD</h3>
+                <ul>
+                    <li><a href="https://enigma.ini.usc.edu/ongoing/enigma-ptsd/" target="_blank">Learn more &rarr;</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="projects.html" class="back-link">&larr; Back to all projects</a>
     </div>
 
     <!-- Footer -->
