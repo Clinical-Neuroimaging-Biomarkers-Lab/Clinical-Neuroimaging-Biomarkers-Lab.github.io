@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Values | CNB Lab</title>
+    <title>Australian Trauma Biobank | CNB Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -122,36 +122,107 @@
             font-size: 1.1rem;
         }
 
-        /* Values */
-        .values-content {
+        /* Project Content */
+        .project-content {
             padding: 4rem 2rem;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
+        .project-description {
+            margin-bottom: 3rem;
         }
 
-        .value-card {
-            background: var(--color-bg-alt);
-            padding: 1.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--color-border);
-        }
-
-        .value-card h4 {
+        .project-description p {
             font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-cta {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .project-cta h3 {
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .value-card p {
-            font-size: 0.9rem;
+        .project-cta p {
+            font-size: 0.95rem;
             color: var(--color-text-secondary);
-            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-cta .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            background: var(--color-text);
+            color: white;
+            transition: background 0.2s;
+        }
+
+        .project-cta .btn:hover {
+            background: #444;
+            color: white;
+        }
+
+        .project-people {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .people-group h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .people-group ul {
+            list-style: none;
+        }
+
+        .people-group li {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            padding: 0.35rem 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
         }
 
         /* Footer */
@@ -220,14 +291,14 @@
             }
 
             .page-header h1 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
-            .values-content {
+            .project-content {
                 padding: 3rem 1.5rem;
             }
 
-            .values-grid {
+            .project-people {
                 grid-template-columns: 1fr;
             }
 
@@ -249,10 +320,10 @@
             <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CNB Lab" class="nav-logo-img">CNB Lab</a>
             <ul class="nav-links">
                 <li><a href="index.html#pi">About</a></li>
-                <li><a href="values.html" class="active">Values</a></li>
+                <li><a href="values.html">Values</a></li>
                 <li><a href="index.html#team">Team</a></li>
                 <li><a href="publications.html">Publications</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
                 <li><a href="index.html#news">News</a></li>
                 <li><a href="index.html#resources">Resources</a></li>
                 <li><a href="index.html#support">Support</a></li>
@@ -262,38 +333,44 @@
 
     <!-- Page Header -->
     <div class="page-header">
-        <h1>Our Values</h1>
-        <p>The principles that guide our work</p>
+        <h1>Australian Trauma Biobank: Understanding CPTSD and PTSD</h1>
     </div>
 
-    <!-- Values Content -->
-    <div class="values-content">
-        <div class="values-grid">
-            <div class="value-card">
-                <h4>Scientific Precision</h4>
-                <p>We pursue rigorous, reproducible research using advanced neuroimaging, computational modelling, and robust statistical methods to ensure our findings are reliable and meaningful.</p>
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="project-description">
+            <p>This project aims to establish a comprehensive biobank to better understand the biological and psychological mechanisms underlying Complex Post-Traumatic Stress Disorder (C-PTSD) and PTSD. Using a multimodal approach, we combine advanced MRI brain imaging, blood-based inflammatory and genetic markers, physiological monitoring (e.g., sleep and heart rate variability), and detailed psychosocial assessments.</p>
+            <p>By comparing individuals with C-PTSD, PTSD, and trauma-exposed controls, the study seeks to identify distinct and shared neurobiological profiles associated with trauma-related disorders.</p>
+            <p>The ultimate goal is to uncover biomarkers that improve diagnosis, inform personalised interventions, and support resilience-focused treatment approaches, while creating an open-access resource to enable future large-scale research in trauma and mental health.</p>
+        </div>
+
+        <div class="project-cta">
+            <h3>Interested in participating?</h3>
+            <p>Complete our pre-screening questionnaire to find out if you're eligible.</p>
+            <a href="https://uqpsych.qualtrics.com/jfe/form/SV_ekPT7fzwC38MbOu" target="_blank" class="btn">Pre-screening Questionnaire &rarr;</a>
+        </div>
+
+        <div class="project-people">
+            <div class="people-group">
+                <h3>Team</h3>
+                <ul>
+                    <li>Dr. Lena Oestreich</li>
+                    <li>Alice Mok</li>
+                    <li>Chrystal Douflias</li>
+                    <li>Dr. Xuqian Li</li>
+                </ul>
             </div>
-            <div class="value-card">
-                <h4>Impact & Translation</h4>
-                <p>We are committed to translating discoveries into real-world clinical applications, bridging the gap between neuroscience research and improved treatments for trauma-related disorders.</p>
-            </div>
-            <div class="value-card">
-                <h4>Ethics & Lived Experience</h4>
-                <p>We centre the voices of those with lived experience in our research design and practice, ensuring our work is ethically grounded and meaningfully responsive to the communities we serve.</p>
-            </div>
-            <div class="value-card">
-                <h4>Open Collaboration</h4>
-                <p>We champion open science, data sharing, and interdisciplinary partnerships, believing that transparent and collaborative research accelerates progress for everyone.</p>
-            </div>
-            <div class="value-card">
-                <h4>Innovation Through Adversity</h4>
-                <p>We embrace creative problem-solving and novel technologies, from AI-enabled analysis to psychedelic-assisted therapies, to tackle the most challenging questions in mental health.</p>
-            </div>
-            <div class="value-card">
-                <h4>Excellence with Kindness</h4>
-                <p>We foster a supportive, inclusive lab culture where high standards and compassion coexist, empowering every team member to thrive and do their best work.</p>
+            <div class="people-group">
+                <h3>Collaborators</h3>
+                <ul>
+                    <li>Prof. Julie Henry</li>
+                    <li>Dr. Fiona Maccallum</li>
+                    <li>Dr. Joshua Flavell</li>
+                </ul>
             </div>
         </div>
+
+        <a href="projects.html" class="back-link">&larr; Back to all projects</a>
     </div>
 
     <!-- Footer -->
